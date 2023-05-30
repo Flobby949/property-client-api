@@ -14,32 +14,38 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
-@TableName("t_account")
+@TableName("sys_admin")
 public class AccountEntity extends BaseEntity {
+    private Long id;
     /**
-     * 用户id
+     * 用户名
      */
-    private Long userId;
+    private String username;
+    /**
+     * 密码
+     */
+    private String password;
+
     /**
      * 手机号
      */
     private String phone;
+
     /**
-     * 登录密码
+     * 超级管理员   0：否   1：是
      */
-    private String password;
+    private Integer superAdmin;
     /**
-     * 支付密码
+     * 账号状态 (1:正常,2:停用,3:冻结,4:删除)
      */
-    private String payPassword;
+    private Integer accountStatus;
     /**
-     * open_id
+     * 在线状态 (0：离线 1:在线)
      */
-    private String wechatId;
+    private Integer onlineStatus;
+
     /**
-     * 状态
-     * 0-启用
-     * 1-禁用
+     * token
      */
-    private Integer status;
+    private String token;
 }

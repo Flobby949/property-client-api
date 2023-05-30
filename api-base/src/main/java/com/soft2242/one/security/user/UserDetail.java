@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 
 /**
  * @author : Flobby
- * @program : property-client-api
+ * @program : community-client-api
  * @description : 登录用户信息
  * @create : 2023-04-23 17:16
  **/
@@ -38,6 +38,7 @@ public class UserDetail implements UserDetails {
     private String mobile;
     private Integer status;
     private Integer superAdmin;
+    private Integer isSuperAdmin;
 
     /**
      * 帐户是否过期
@@ -83,6 +84,6 @@ public class UserDetail implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return this.isEnabled;
+        return true;
     }
 }

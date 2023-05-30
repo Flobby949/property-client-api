@@ -16,6 +16,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = false)
 @TableName("t_user")
 public class UserEntity extends BaseEntity {
+    private Long id;
     /**
      * 用户名
      */
