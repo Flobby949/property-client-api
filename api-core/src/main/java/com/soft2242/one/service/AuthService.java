@@ -1,7 +1,8 @@
 package com.soft2242.one.service;
 
-import com.soft2242.one.vo.SysTokenVO;
 import com.soft2242.one.vo.AccountLoginVO;
+import com.soft2242.one.vo.RepasswordVO;
+import com.soft2242.one.vo.SysTokenVO;
 
 /**
  * @author : Flobby
@@ -33,4 +34,12 @@ public interface AuthService {
      * @return boolean
      */
     boolean sendCode(String mobile);
+
+    /**
+     * 修改密码
+     *
+     * @param repasswordVO 修改密码信息
+     * @return boolean
+     */
+    boolean repassword(RepasswordVO repasswordVO);
 }

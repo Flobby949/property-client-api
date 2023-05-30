@@ -4,6 +4,7 @@ import com.soft2242.one.common.utils.Result;
 import com.soft2242.one.service.AuthService;
 import com.soft2242.one.service.service.StorageService;
 import com.soft2242.one.vo.AccountLoginVO;
+import com.soft2242.one.vo.RepasswordVO;
 import com.soft2242.one.vo.SysTokenVO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -38,6 +39,20 @@ public class AuthController {
     Result<SysTokenVO> login(@RequestBody AccountLoginVO login) {
         SysTokenVO token = authService.loginByAccount(login);
         return Result.ok(token);
+    }
+
+    @PostMapping("sendCode")
+    @Operation(summary = "发送验证码")
+    Result<Void> sendCode(String phone) {
+        authService.sendCode(phone);
+        return Result.ok();
+    }
+
+    @PostMapping("repassword")
+    @Operation(summary = "修改密码")
+    Result<Void> repassword(@RequestBody RepasswordVO repasswordVO) {
+        boolean isOk = authService.repassword(repasswordVO);
+        return isOk ? Result.ok() : Result.error("修改密码失败");
     }
 
     @PostMapping("/file")
