@@ -46,7 +46,7 @@ public class PatrolRecordsController {
     }
 
 
-    @GetMapping("overPointNumber")
+    @GetMapping("onPointNumber")
     @Operation(summary = "未巡更点数目")
     public  Result<PatrolRecordsVO> getNoNumber(){
         PatrolRecordsVO recordsVOS = tPatrolRecordsService.searchNoNumber();
