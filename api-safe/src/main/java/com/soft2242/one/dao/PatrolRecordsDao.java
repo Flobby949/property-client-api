@@ -33,10 +33,10 @@ public interface PatrolRecordsDao extends BaseDao<PatrolRecordsEntity> {
     PatrolRecordsVO searchOverPointNumber(String nowDate);
 
     PatrolRecordsVO searchAllPointNumber(String nowDate);
-    Integer searchType(Map<String,Object> params);
+    List<PatrolRecordsVO> searchType(Map<String,Object> params);
 
-    List<PatrolRecordsVO> searchNowRecord(Map<String,Object> params);
-    List<PatrolRecordsVO> searchNowItemRecord(Map<String,Object> params);
+   PatrolRecordsVO searchNowPointRecord(Long id);
+    PatrolRecordsVO searchNowItemRecord(Long id);
 
 
 
