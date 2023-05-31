@@ -20,6 +20,7 @@
         <module>api-core</module>
         <module>api-biz</module>
         <module>api-plugin</module>
+	    <module>api-safe</module>
     </modules>
 
     <properties>
