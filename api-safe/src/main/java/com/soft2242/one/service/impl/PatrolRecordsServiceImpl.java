@@ -1,0 +1,76 @@
+package com.soft2242.one.service.impl;
+
+import com.soft2242.one.common.utils.DateUtils;
+import com.soft2242.one.dao.PatrolRecordsDao;
+import com.soft2242.one.entity.PatrolRecordsEntity;
+import com.soft2242.one.mybatis.service.impl.BaseServiceImpl;
+import com.soft2242.one.query.PatrolRecordsQuery;
+import com.soft2242.one.service.PatrolRecordsService;
+import com.soft2242.one.vo.PatrolRecordsVO;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.*;
+
+/**
+ * 巡更记录表
+ *
+ * @author 软件2242 soft2242@gmail.com
+ * @since 1.0.0 2023-05-25
+ */
+@Service
+@AllArgsConstructor
+public class PatrolRecordsServiceImpl extends BaseServiceImpl<PatrolRecordsDao, PatrolRecordsEntity> implements PatrolRecordsService {
+
+    @Override
+    public List<PatrolRecordsVO> page(PatrolRecordsQuery query) {
+        Map<String, Object> params = getParams(query);
+        Integer integer = baseMapper.searchType(params);
+        List<PatrolRecordsVO> recordsVOS = new ArrayList<>();
+        if (integer == 0) {
+            recordsVOS = baseMapper.searchNowRecord(params);
+        }
+        if (integer == 1) {
+            recordsVOS = baseMapper.searchNowItemRecord(params);
+        }
+        return recordsVOS;
+
+    }
+
+    private Map<String, Object> getParams(PatrolRecordsQuery query) {
+        Map<String, Object> parmas = new HashMap<>();
+
+        Date date = new Date();
+        DateFormat dateFormat = new SimpleDateFormat(DateUtils.DATE_PATTERN);
+        String formatDate = dateFormat.format(date);
+        query.setNowDate(formatDate);
+        parmas.put("inspectorId", query.getInspectorId());
+        parmas.put("nowDate", query.getNowDate());
+        return parmas;
+    }
+
+    @Override
+    public PatrolRecordsVO searchOverNumber() {
+        Date date = new Date();
+        DateFormat dateFormat = new SimpleDateFormat(DateUtils.DATE_PATTERN);
+        String formatDate = dateFormat.format(date);
+
+        PatrolRecordsVO recordsVOS = baseMapper.searchOverPointNumber(formatDate);
+        return recordsVOS;
+
+    }
+
+    @Override
+    public PatrolRecordsVO searchNoNumber() {
+        Date date = new Date();
+        DateFormat dateFormat = new SimpleDateFormat(DateUtils.DATE_PATTERN);
+        String formatDate = dateFormat.format(date);
+
+        PatrolRecordsVO recordsVOS = baseMapper.searchNoPointNumber(formatDate);
+        return recordsVOS;
+    }
+
+
+}

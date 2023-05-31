@@ -6,11 +6,11 @@
 	<parent>
 		<groupId>com.soft2242.one</groupId>
 		<artifactId>property-client-api</artifactId>
-		<version>1.0.0</version>
+		<version>${reversion}</version>
 	</parent>
 	
 	<artifactId>api-safe</artifactId>
-	
+	<version>${reversion}</version>
 	<properties>
 		<maven.compiler.source>17</maven.compiler.source>
 		<maven.compiler.target>17</maven.compiler.target>
@@ -21,7 +21,7 @@
 		<dependency>
 			<groupId>com.soft2242.one</groupId>
 			<artifactId>api-base</artifactId>
-			<version>1.0.0</version>
+			<version>${reversion}</version>
 		</dependency>
 	</dependencies>
 </project>
