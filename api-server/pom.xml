@@ -42,6 +42,12 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+    
+        <dependency>
+            <groupId>com.soft2242.one</groupId>
+            <artifactId>api-safe</artifactId>
+            <version>${reversion}</version>
+        </dependency>
     </dependencies>
 
 
@@ -55,4 +61,5 @@
         </plugins>
     </build>
 
+  
 </project>
