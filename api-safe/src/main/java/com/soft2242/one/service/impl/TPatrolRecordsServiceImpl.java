@@ -52,6 +52,24 @@ public class TPatrolRecordsServiceImpl extends BaseServiceImpl<TPatrolRecordsDao
         return new PageResult<>(recordsVOS, page.getTotal());
     }
 
+    @Override
+    public TPatrolRecordsVO getByRecordId(Long recordId) {
+        TPatrolRecordsVO vo = baseMapper.getByRecordId(recordId);
+        if(vo.getType()==0){//如果是巡更点类型
+            TPatrolRecordsVO pointInfo = baseMapper.getPointInfo(vo.getPointId());
+            vo.setCommunityName(pointInfo.getCommunityName());
+            vo.setBuildingName(pointInfo.getBuildingName());
+            vo.setUnits(pointInfo.getUnits());
+            vo.setPointName(pointInfo.getPointName());
+        }
+        else {//如果是巡检项目
+            TPatrolRecordsVO inspectItenmInfo = baseMapper.getInspectItenmInfo(vo.getPointId());
+            vo.setCommunityName(inspectItenmInfo.getCommunityName());
+            vo.setPointName(inspectItenmInfo.getPointName());
+        }
+        return vo;
+    }
+
     private Map<String,Object> getParams(TPatrolRecordsQuey query){
         Map<String,Object> parmas=new HashMap<>();
         parmas.put("createTime",query.getPatrolDate());

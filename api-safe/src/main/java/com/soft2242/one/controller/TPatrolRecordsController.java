@@ -45,10 +45,10 @@ public class TPatrolRecordsController {
     @GetMapping("{id}")
     @Operation(summary = "信息")
 //    @PreAuthorize("hasAuthority('soft2242:records:info')")
-    public Result<PatrolRecordsVO> get(@PathVariable("id") Long id){
-        PatrolRecordsEntity entity = tPatrolRecordsService.getById(id);
+    public Result<TPatrolRecordsVO> get(@PathVariable("id") Long id){
+        TPatrolRecordsVO vo= tPatrolRecordsService.getByRecordId(id);
 
-        return Result.ok(PatrolRecordsConvert.INSTANCE.convert(entity));
+        return Result.ok(vo);
     }
 
 

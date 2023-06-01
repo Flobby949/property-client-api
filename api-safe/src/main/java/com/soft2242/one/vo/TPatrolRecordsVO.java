@@ -28,6 +28,9 @@ public class TPatrolRecordsVO implements Serializable{
     @Schema(description = "巡更路线id")
     private Long pathId;
 
+    @Schema(description = "线路名称")
+    private String wayName;
+
     @Schema(description = "小区名")
     private String communityName;
 
