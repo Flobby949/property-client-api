@@ -47,6 +47,7 @@ public class PatrolRecordsController {
     }
 
 
+
     @GetMapping("noPointNumber")
     @Operation(summary = "未巡更点数目")
     public  Result<PatrolRecordsVO> getNoNumber(){

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.soft2242.one.dao.TPatrolRecordsDao">
+    <select id="searchList" resultType="com.soft2242.one.vo.TPatrolRecordsVO">
+        SELECT a.*,b.REAL_NAME,c.PHONE,d.type,e.start_time,e.end_time FROM t_patrol_records a
+        LEFT JOIN  sys_admin_info b on a.inspector_id=b.ADMIN_ID
+        LEFT JOIN sys_admin c on b.ADMIN_ID=c.ID
+        LEFT JOIN t_patrol_path d on d.id=a.path_id
+        LEFT JOIN t_patrol_plan e on e.id=a.plan_id
+        WHERE a.deleted=0
+        <if test="createTime!=null and createTime.trim()!=''">
+            AND DATE(a.create_time)=#{createTime}
+        </if>
+        <if test="inspectorId!=null">
+            AND a.inspector_id=#{inspectorId}
+        </if>
+    </select>
+    <select id="getPointInfo" resultType="com.soft2242.one.vo.TPatrolRecordsVO">
+        SELECT t1.point_name, t2.community_name,t3.building_name,t3.units FROM t_patrol_points t1
+        LEFT JOIN t_community t2 on  t2.id=t1.community_id
+        LEFT JOIN t_building  t3 on  t3.id=t1.building_id
+        WHERE t1.id=#{pointId}
+    </select>
+    <select id="getInspectItenmInfo" resultType="com.soft2242.one.vo.TPatrolRecordsVO">
+        SELECT t2.community_name,t1.name as pointName  FROM t_inspection_item t1
+        LEFT JOIN t_community t2 on  t2.id=t1.community_id
+        WHERE t1.id=#{pointId}
+    </select>
+
+
+</mapper>
