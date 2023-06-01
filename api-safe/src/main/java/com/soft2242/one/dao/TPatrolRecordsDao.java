@@ -20,6 +20,8 @@ import java.util.Map;
 public interface TPatrolRecordsDao extends BaseDao<PatrolRecordsEntity> {
     List<TPatrolRecordsVO> searchList(Map<String,Object> params);
 
+    TPatrolRecordsVO getByRecordId(@Param("id") Long recordId);
+
     /**
      * 获取巡更点的信息
      * @param pointId

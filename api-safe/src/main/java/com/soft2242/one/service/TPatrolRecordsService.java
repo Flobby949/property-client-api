@@ -19,6 +19,8 @@ import java.util.List;
 public interface TPatrolRecordsService extends BaseService<PatrolRecordsEntity> {
     PageResult<TPatrolRecordsVO> page(TPatrolRecordsQuey query);
 
+    TPatrolRecordsVO getByRecordId(Long recordId);
+
     void save(TPatrolRecordsVO vo);
 
     void update(TPatrolRecordsVO vo);
