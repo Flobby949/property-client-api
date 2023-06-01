@@ -13,9 +13,9 @@
 	</select>
 	
 	<select id="searchAllPointNumber" resultType="com.soft2242.one.vo.PatrolRecordsVO">
-		select count(DISTINCT a.point_id) as NoPointNumber from  t_patrol_records a  join t_patrol_plan b  on  a.plan_id  =b.id  where DATE(a.create_time)=#{nowDate}
+		select count(DISTINCT a.point_id) as pointNumber from  t_patrol_records a  join t_patrol_plan b  on  a.plan_id  =b.id  where DATE(a.create_time)=#{nowDate}
 	</select>
-	<select id="searchNowRecord" resultType="com.soft2242.one.vo.PatrolRecordsVO">
+	<select id="searchNowPointRecord" resultType="com.soft2242.one.vo.PatrolRecordsVO">
 		select DISTINCT a.id,
 		                c.community_name,
 		                d.building_name,
@@ -32,43 +32,33 @@
 			          on b.community_id =
 			             c.id
 			     join t_building d
-			          on b.community_id  =
+			          on b.community_id =
 			             d.community_id and
 			             b.building_id =
 			             d.id
-			     join t_patrol_path e on e.id=a.path_id
+			     join t_patrol_path e
+			          on e.id =
+			             a.path_id
 			     join t_patrol_plan f
 			          on a.plan_id =
 			             f.id
 			     join sys_admin_info g
 			          on g.ADMIN_ID =
 			             f.inspector_id
-		where
-		   a.create_time =#{nowDate}
-		  and e.type =0
-		  and f.inspector_id =#{inspectorId}
+		where e.type =
+		      0
+		  and a.id =
+		      #{id}
 	</select>
-	<select id="searchType" resultType="java.lang.Integer">
-		select c.type
-		from t_patrol_records a
-			     join t_patrol_plan b
-			          on a.plan_id =
-			             b.id
-			     join t_patrol_path c
-			          on c.id =
-			             b.path_id
-		where a.create_time =
-		      #{nowDate}
-		  and f.inspector_id =
-		      #{inspectorId}
-	</select>
+
 	<select id="searchNowItemRecord" resultType="com.soft2242.one.vo.PatrolRecordsVO">
-		select c.`name`,
+		select c.`name` as itemName,
 		       d.community_name,
 		       a.`status`,
 		       e.start_time,
 		       e.end_time,
-		       f.REAL_NAME
+		       f.REAL_NAME,
+		       a.id
 		from t_patrol_records a
 			     join t_patrol_path b
 			          on a.path_id =
@@ -85,14 +75,23 @@
 			     join sys_admin_info f
 			          on f.ADMIN_ID =
 			             e.inspector_id
-		where b.type =
-		      1
-		  and a.create_time =
-		      #{nowDate}
-		  and f.inspector_id =
-		      #{inspectorId}
+		where b.type =1
+		  and a.id=#{id}
+		
 	
 	
+	</select>
+	<select id="searchType" resultType="com.soft2242.one.vo.PatrolRecordsVO">
+		select distinct a.id,b.path_id,c.type
+		from t_patrol_records a
+			     join t_patrol_plan b
+			          on a.plan_id =
+			             b.id
+			     join t_patrol_path c
+			          on c.id =
+			             b.path_id
+		where DATE (a.create_time) = #{nowDate}
+		  and b.inspector_id = #{inspectorId}
 	</select>
 
 

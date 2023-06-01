@@ -23,6 +23,11 @@ public interface PatrolRecordsService extends BaseService<PatrolRecordsEntity> {
 
     PatrolRecordsVO searchNoNumber();
 
+    PatrolRecordsVO searchAllNumber();
+
+    void update(PatrolRecordsVO vo);
+
+
 
 
 

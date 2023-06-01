@@ -1,6 +1,7 @@
 package com.soft2242.one.service.impl;
 
 import com.soft2242.one.common.utils.DateUtils;
+import com.soft2242.one.convert.PatrolRecordsConvert;
 import com.soft2242.one.dao.PatrolRecordsDao;
 import com.soft2242.one.entity.PatrolRecordsEntity;
 import com.soft2242.one.mybatis.service.impl.BaseServiceImpl;
@@ -27,15 +28,26 @@ public class PatrolRecordsServiceImpl extends BaseServiceImpl<PatrolRecordsDao, 
     @Override
     public List<PatrolRecordsVO> page(PatrolRecordsQuery query) {
         Map<String, Object> params = getParams(query);
-        Integer integer = baseMapper.searchType(params);
-        List<PatrolRecordsVO> recordsVOS = new ArrayList<>();
-        if (integer == 0) {
-            recordsVOS = baseMapper.searchNowRecord(params);
+        List<PatrolRecordsVO> recordsVOS = baseMapper.searchType(params);
+        List<PatrolRecordsVO> a = new ArrayList<>();
+
+        int i = 0;
+        while (i < recordsVOS.size()) {
+            if (recordsVOS.get(i).getType() == 0) {
+                System.out.println("--------------------------------------" + recordsVOS.get(i).getId() + recordsVOS.get(i).getType());
+                PatrolRecordsVO patrolRecordsVO = baseMapper.searchNowPointRecord(recordsVOS.get(i).getId());
+                a.add(patrolRecordsVO);
+
+
+            }
+            if (recordsVOS.get(i).getType() == 1) {
+                PatrolRecordsVO patrolRecordsVO = baseMapper.searchNowItemRecord(recordsVOS.get(i).getId());
+                a.add(patrolRecordsVO);
+            }
+            i++;
         }
-        if (integer == 1) {
-            recordsVOS = baseMapper.searchNowItemRecord(params);
-        }
-        return recordsVOS;
+
+        return a;
 
     }
 
@@ -48,6 +60,7 @@ public class PatrolRecordsServiceImpl extends BaseServiceImpl<PatrolRecordsDao, 
         query.setNowDate(formatDate);
         parmas.put("inspectorId", query.getInspectorId());
         parmas.put("nowDate", query.getNowDate());
+
         return parmas;
     }
 
@@ -70,6 +83,22 @@ public class PatrolRecordsServiceImpl extends BaseServiceImpl<PatrolRecordsDao, 
 
         PatrolRecordsVO recordsVOS = baseMapper.searchNoPointNumber(formatDate);
         return recordsVOS;
+    }
+
+    @Override
+    public PatrolRecordsVO searchAllNumber() {
+        Date date = new Date();
+        DateFormat dateFormat = new SimpleDateFormat(DateUtils.DATE_PATTERN);
+        String formatDate = dateFormat.format(date);
+
+        PatrolRecordsVO recordsVOS = baseMapper.searchAllPointNumber(formatDate);
+        return recordsVOS;
+    }
+
+    @Override
+    public void update(PatrolRecordsVO vo) {
+        PatrolRecordsEntity entity = PatrolRecordsConvert.INSTANCE.convert(vo);
+        updateById(entity);
     }
 
 
