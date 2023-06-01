@@ -23,7 +23,8 @@
 		                a.`status`,
 		                f.start_time,
 		                f.end_time,
-		                g.REAL_NAME
+		                g.REAL_NAME,
+		                e.way_name as wayName
 		from t_patrol_records a
 			     join t_patrol_points b
 			          on a.point_id =

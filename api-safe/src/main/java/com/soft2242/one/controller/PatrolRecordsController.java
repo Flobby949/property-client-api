@@ -34,7 +34,10 @@ public class PatrolRecordsController {
     @GetMapping("page")
     @Operation(summary = "分页")
     public Result<List<PatrolRecordsVO>> page(@ParameterObject @Valid PatrolRecordsQuery query){
+        System.out.println("--------------------------------"+query);
+
         List<PatrolRecordsVO> page = tPatrolRecordsService.page(query);
+        System.out.println("--------------------------------"+page);
         return Result.ok(page);
     }
 

@@ -34,14 +34,19 @@ public class PatrolRecordsServiceImpl extends BaseServiceImpl<PatrolRecordsDao, 
         int i = 0;
         while (i < recordsVOS.size()) {
             if (recordsVOS.get(i).getType() == 0) {
-                System.out.println("--------------------------------------" + recordsVOS.get(i).getId() + recordsVOS.get(i).getType());
+//                System.out.println("--------------------------------------" + recordsVOS.get(i).getId() + recordsVOS.get(i).getType());
                 PatrolRecordsVO patrolRecordsVO = baseMapper.searchNowPointRecord(recordsVOS.get(i).getId());
+                patrolRecordsVO.setTitle(patrolRecordsVO.getCommunityName()+"-"+patrolRecordsVO.getBuildingName()+"-"+patrolRecordsVO.getUnits()+"单元");
+                patrolRecordsVO.setType(0);
                 a.add(patrolRecordsVO);
 
 
             }
             if (recordsVOS.get(i).getType() == 1) {
                 PatrolRecordsVO patrolRecordsVO = baseMapper.searchNowItemRecord(recordsVOS.get(i).getId());
+                patrolRecordsVO.setTitle(patrolRecordsVO.getCommunityName()+"-"+patrolRecordsVO.getItemName());
+                patrolRecordsVO.setType(1);
+
                 a.add(patrolRecordsVO);
             }
             i++;
