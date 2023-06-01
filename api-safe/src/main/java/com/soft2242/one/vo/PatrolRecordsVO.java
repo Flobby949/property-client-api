@@ -30,13 +30,23 @@ public class PatrolRecordsVO implements Serializable {
 
 
     @Schema(description = "巡更点数目")
-    private  Integer PointNumber;
+    private  Integer pointNumber;
 
     @Schema(description = "已巡更点数目")
-    private  Integer OverPointNumber;
+    private  Integer overPointNumber;
 
+    @Schema(description = "社区名称")
+    private  String communityName;
+
+    @Schema(description = "巡更项目名称")
+    private  String itemName;
+    @Schema(description = "楼宇名称")
+    String buildingName;
+
+    @Schema(description = "单元")
+    Integer units;
     @Schema(description = "未巡更点数目")
-    private  Integer NoPointNumber;
+    private  Integer noPointNumber;
 
 
     @Schema(description = "巡更点id")

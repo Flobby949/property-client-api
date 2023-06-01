@@ -31,9 +31,9 @@ import java.util.List;
 public class PatrolRecordsController {
     private final PatrolRecordsService tPatrolRecordsService;
 
-    @GetMapping("page/{query}")
+    @GetMapping("page")
     @Operation(summary = "分页")
-    public Result<List<PatrolRecordsVO>> page(@PathVariable("query")PatrolRecordsQuery query){
+    public Result<List<PatrolRecordsVO>> page(@ParameterObject @Valid PatrolRecordsQuery query){
         List<PatrolRecordsVO> page = tPatrolRecordsService.page(query);
         return Result.ok(page);
     }
@@ -42,18 +42,27 @@ public class PatrolRecordsController {
     @Operation(summary = "已经巡更点数目")
     public  Result<PatrolRecordsVO> getOverNumber(){
         PatrolRecordsVO recordsVOS = tPatrolRecordsService.searchOverNumber();
+
         return  Result.ok(recordsVOS);
     }
 
 
-    @GetMapping("overPointNumber")
+    @GetMapping("noPointNumber")
     @Operation(summary = "未巡更点数目")
     public  Result<PatrolRecordsVO> getNoNumber(){
         PatrolRecordsVO recordsVOS = tPatrolRecordsService.searchNoNumber();
+
         return  Result.ok(recordsVOS);
     }
 
+    @GetMapping("allPointNumber")
+    @Operation(summary = "所有巡更点数目")
+    public  Result<PatrolRecordsVO> getAllNumber(){
 
+        PatrolRecordsVO recordsVOS = tPatrolRecordsService.searchAllNumber();
+
+        return  Result.ok(recordsVOS);
+    }
 
 
 
@@ -70,14 +79,12 @@ public class PatrolRecordsController {
 
 
 
-//    @PutMapping
-//    @Operation(summary = "修改")
-////    @PreAuthorize("hasAuthority('soft2242:records:update')")
-//    public Result<String> update(@RequestBody @Valid PatrolRecordsVO vo){
-//        tPatrolRecordsService.update(vo);
-//
-//        return Result.ok();
-//    }
+    @PutMapping
+    @Operation(summary = "修改")
+    public Result<String> update(@RequestBody @Valid PatrolRecordsVO vo){
+        tPatrolRecordsService.update(vo);
+        return Result.ok();
+    }
 
 
 }
