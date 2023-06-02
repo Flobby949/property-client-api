@@ -6,14 +6,41 @@
  
 	
 	<select id="searchNoPointNumber" resultType="com.soft2242.one.vo.PatrolRecordsVO">
-		select count(DISTINCT a.point_id) as NoPointNumber from  t_patrol_records a  join t_patrol_plan b  on  a.plan_id  =b.id  where DATE(a.create_time)=#{nowDate} and a.`status`=0
+		select count(
+				       DISTINCT
+				       a.point_id) as NoPointNumber
+		from t_patrol_records a
+			     join t_patrol_plan b
+			          on a.plan_id =
+			             b.id
+		where DATE (a.create_time)=#{nowDate}
+		  and a.`status`=0
+		  and a.inspector_id=#{inspectorId}
+	
 	</select>
 	<select id="searchOverPointNumber" resultType="com.soft2242.one.vo.PatrolRecordsVO">
-		select count(DISTINCT a.point_id) as OverPointNumber from  t_patrol_records a  join t_patrol_plan b  on  a.plan_id  =b.id  where DATE(a.create_time)=#{nowDate} and a.`status`=1
+		select count(
+				       DISTINCT
+				       a.point_id) as OverPointNumber
+		from t_patrol_records a
+			     join t_patrol_plan b
+			          on a.plan_id =
+			             b.id
+		where DATE (a.create_time)=#{nowDate}
+		  and a.`status`=1
+		  and a.inspector_id=#{inspectorId}
 	</select>
 	
 	<select id="searchAllPointNumber" resultType="com.soft2242.one.vo.PatrolRecordsVO">
-		select count(DISTINCT a.point_id) as pointNumber from  t_patrol_records a  join t_patrol_plan b  on  a.plan_id  =b.id  where DATE(a.create_time)=#{nowDate}
+		select count(
+				       DISTINCT
+				       a.point_id) as pointNumber
+		from t_patrol_records a
+			     join t_patrol_plan b
+			          on a.plan_id =
+			             b.id
+		where DATE (a.create_time)=#{nowDate}
+		  and a.inspector_id=#{inspectorId}
 	</select>
 	<select id="searchNowPointRecord" resultType="com.soft2242.one.vo.PatrolRecordsVO">
 		select DISTINCT a.id,

@@ -27,6 +27,7 @@ public class TokenUtils {
         if (StrUtil.isBlank(accessToken)) {
             accessToken = request.getParameter("accessToken");
         }
+
         return accessToken;
     }
 }
