@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.soft2242.one.dao.DoorDao">
+
+    <select id="selectDoor" resultType="com.soft2242.one.vo.DoorListItemVO" parameterType="long">
+        SELECT door.id            as doorId,
+               door.door_name,
+               door.door_img,
+               door.online_status,
+               device.status      as deviceStatus,
+               device.device_name as deviceName,
+               type.type          as deviceType
+        FROM t_door door
+                 LEFT JOIN t_device device on door.device_id = device.id
+                 LEFT JOIN t_device_type type on device.device_type = type.id
+        WHERE door.deleted = 0
+          AND door.community_id = #{value}
+    </select>
+</mapper>
