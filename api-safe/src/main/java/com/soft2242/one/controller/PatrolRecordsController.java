@@ -53,12 +53,9 @@ public class PatrolRecordsController {
     }
 
 
-<<<<<<< HEAD
-    @GetMapping("noPointNumber/{inspectorId}")
-=======
 
-    @GetMapping("noPointNumber")
->>>>>>> origin/test
+    @GetMapping("noPointNumber/{inspectorId}")
+
     @Operation(summary = "未巡更点数目")
     public  Result<PatrolRecordsVO> getNoNumber(@PathVariable("inspectorId")Long inspectorId){
         PatrolRecordsVO recordsVOS = tPatrolRecordsService.searchNoNumber(inspectorId);
