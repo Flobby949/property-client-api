@@ -19,11 +19,11 @@ public interface PatrolRecordsService extends BaseService<PatrolRecordsEntity> {
 
     List<PatrolRecordsVO> page(PatrolRecordsQuery query);
 
-    PatrolRecordsVO searchOverNumber();
+    PatrolRecordsVO searchOverNumber(Long inspectorId);
 
-    PatrolRecordsVO searchNoNumber();
+    PatrolRecordsVO searchNoNumber(Long inspectorId);
 
-    PatrolRecordsVO searchAllNumber();
+    PatrolRecordsVO searchAllNumber(Long inspectorId);
 
     void update(PatrolRecordsVO vo);
 

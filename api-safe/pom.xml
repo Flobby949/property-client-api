@@ -23,5 +23,11 @@
 			<artifactId>api-base</artifactId>
 			<version>${reversion}</version>
 		</dependency>
+		<dependency>
+			<groupId>com.soft2242.one</groupId>
+			<artifactId>file-plugin</artifactId>
+			<version>${reversion}</version>
+		
+		</dependency>
 	</dependencies>
 </project>

@@ -16,7 +16,7 @@ import java.util.Date;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Schema(description = "巡更记录表查询")
-public class PatrolRecordsQuery extends Query {
+public class PatrolRecordsQuery extends  Query{
     @Schema(description = "巡更人id")
     private Long inspectorId;
     @Schema(description = "今天日期")

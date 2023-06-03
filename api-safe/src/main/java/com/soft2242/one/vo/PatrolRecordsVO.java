@@ -22,6 +22,8 @@ public class PatrolRecordsVO implements Serializable {
     @Schema(description = "自增主键")
     private Long id;
 
+    @Schema(description = "客户端巡更点标题")
+    private  String title;
     @Schema(description = "巡更计划id")
     private Long planId;
 
@@ -55,6 +57,9 @@ public class PatrolRecordsVO implements Serializable {
     private  Integer type;
     @Schema(description = "巡更人id")
     private Long inspectorId;
+
+    @Schema(description = "巡更线路名称")
+    private  String wayName;
     @Schema(description = "巡更人姓名")
     private String REALNAME;
 

@@ -23,16 +23,16 @@ public interface PatrolRecordsDao extends BaseDao<PatrolRecordsEntity> {
      * @param nowDate 今天日期
      * @return
      */
-    PatrolRecordsVO searchNoPointNumber(String nowDate);
+    PatrolRecordsVO searchNoPointNumber(String nowDate,Long inspectorId);
 
     /**
      * 已经巡更点数目
      * @param nowDate 今天日期
      * @return
      */
-    PatrolRecordsVO searchOverPointNumber(String nowDate);
+    PatrolRecordsVO searchOverPointNumber(String nowDate, Long inspectorId);
 
-    PatrolRecordsVO searchAllPointNumber(String nowDate);
+    PatrolRecordsVO searchAllPointNumber(String nowDate,Long inspectorId);
     List<PatrolRecordsVO> searchType(Map<String,Object> params);
 
    PatrolRecordsVO searchNowPointRecord(Long id);

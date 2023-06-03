@@ -34,14 +34,19 @@ public class PatrolRecordsServiceImpl extends BaseServiceImpl<PatrolRecordsDao, 
         int i = 0;
         while (i < recordsVOS.size()) {
             if (recordsVOS.get(i).getType() == 0) {
-                System.out.println("--------------------------------------" + recordsVOS.get(i).getId() + recordsVOS.get(i).getType());
+//                System.out.println("--------------------------------------" + recordsVOS.get(i).getId() + recordsVOS.get(i).getType());
                 PatrolRecordsVO patrolRecordsVO = baseMapper.searchNowPointRecord(recordsVOS.get(i).getId());
+                patrolRecordsVO.setTitle(patrolRecordsVO.getCommunityName()+"-"+patrolRecordsVO.getBuildingName()+"-"+patrolRecordsVO.getUnits()+"单元");
+                patrolRecordsVO.setType(0);
                 a.add(patrolRecordsVO);
 
 
             }
             if (recordsVOS.get(i).getType() == 1) {
                 PatrolRecordsVO patrolRecordsVO = baseMapper.searchNowItemRecord(recordsVOS.get(i).getId());
+                patrolRecordsVO.setTitle(patrolRecordsVO.getCommunityName()+"-"+patrolRecordsVO.getItemName());
+                patrolRecordsVO.setType(1);
+
                 a.add(patrolRecordsVO);
             }
             i++;
@@ -65,33 +70,33 @@ public class PatrolRecordsServiceImpl extends BaseServiceImpl<PatrolRecordsDao, 
     }
 
     @Override
-    public PatrolRecordsVO searchOverNumber() {
+    public PatrolRecordsVO searchOverNumber(Long inspectorId) {
         Date date = new Date();
         DateFormat dateFormat = new SimpleDateFormat(DateUtils.DATE_PATTERN);
         String formatDate = dateFormat.format(date);
 
-        PatrolRecordsVO recordsVOS = baseMapper.searchOverPointNumber(formatDate);
+        PatrolRecordsVO recordsVOS = baseMapper.searchOverPointNumber(formatDate,inspectorId);
         return recordsVOS;
 
     }
 
     @Override
-    public PatrolRecordsVO searchNoNumber() {
+    public PatrolRecordsVO searchNoNumber(Long inspectorId) {
         Date date = new Date();
         DateFormat dateFormat = new SimpleDateFormat(DateUtils.DATE_PATTERN);
         String formatDate = dateFormat.format(date);
 
-        PatrolRecordsVO recordsVOS = baseMapper.searchNoPointNumber(formatDate);
+        PatrolRecordsVO recordsVOS = baseMapper.searchNoPointNumber(formatDate,inspectorId);
         return recordsVOS;
     }
 
     @Override
-    public PatrolRecordsVO searchAllNumber() {
+    public PatrolRecordsVO searchAllNumber(Long inspectorId) {
         Date date = new Date();
         DateFormat dateFormat = new SimpleDateFormat(DateUtils.DATE_PATTERN);
         String formatDate = dateFormat.format(date);
 
-        PatrolRecordsVO recordsVOS = baseMapper.searchAllPointNumber(formatDate);
+        PatrolRecordsVO recordsVOS = baseMapper.searchAllPointNumber(formatDate,inspectorId);
         return recordsVOS;
     }
 
