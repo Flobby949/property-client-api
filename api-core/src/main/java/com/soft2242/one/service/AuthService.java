@@ -1,5 +1,7 @@
 package com.soft2242.one.service;
 
+import com.soft2242.one.entity.AccountEntity;
+import com.soft2242.one.entity.UserEntity;
 import com.soft2242.one.vo.AccountLoginVO;
 import com.soft2242.one.vo.RepasswordVO;
 import com.soft2242.one.vo.SysTokenVO;
@@ -42,4 +44,11 @@ public interface AuthService {
      * @return boolean
      */
     boolean repassword(RepasswordVO repasswordVO);
+
+    /**
+     * 根据手机号获取用户信息
+     * @param phone
+     * @return
+     */
+    AccountEntity getUserInfo(String phone);
 }

@@ -12,6 +12,7 @@ import com.soft2242.one.service.TPatrolRecordsService;
 import com.soft2242.one.vo.TPatrolRecordsVO;
 import lombok.AllArgsConstructor;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -73,6 +74,10 @@ public class TPatrolRecordsServiceImpl extends BaseServiceImpl<TPatrolRecordsDao
     private Map<String,Object> getParams(TPatrolRecordsQuey query){
         Map<String,Object> parmas=new HashMap<>();
         parmas.put("createTime",query.getPatrolDate());
+        //获取当前登录用户的id
+        Authentication authentication;
+
+        System.out.println();
         parmas.put("inspectorId",query.getInspectorId());
         return parmas;
     }
