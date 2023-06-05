@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.soft2242.one.dao.RepairRecordDao">
+    <select id="getRepairRecordList" resultType="com.soft2242.one.vo.RepairRecordVO">
+        SELECT t1.*,t2.place,t2.title,t2.content,t2.type,t2.create_time as createTimeRepair FROM t_repair_record t1
+        LEFT JOIN t_repair t2 on t2.id=t1.repair_id
+        WHERE t1.deleted=0
+        <if test="employeeIds!=null">
+            AND t1.employee_ids  LIKE CONCAT('%',#{employeeIds},'%')
+        </if>
+        <if test="status!=null">
+            AND t1.state = #{status}
+        </if>
+    </select>
+</mapper>
