@@ -1,6 +1,8 @@
 package com.soft2242.one.controller;
 
 import com.soft2242.one.common.utils.Result;
+import com.soft2242.one.entity.AccountEntity;
+import com.soft2242.one.entity.UserEntity;
 import com.soft2242.one.service.AuthService;
 import com.soft2242.one.service.service.StorageService;
 import com.soft2242.one.vo.AccountLoginVO;
@@ -9,10 +11,7 @@ import com.soft2242.one.vo.SysTokenVO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -61,6 +60,13 @@ public class AuthController {
         String originalFilename = file.getOriginalFilename();
         String upload = storageService.upload(file.getInputStream(), originalFilename);
         return Result.ok(upload);
+    }
+
+    @GetMapping("/info")
+    @Operation(summary = "获取用户信息")
+    Result<AccountEntity> getInfo(String phone) {
+        AccountEntity userInfo = authService.getUserInfo(phone);
+        return Result.ok(userInfo);
     }
 
 }

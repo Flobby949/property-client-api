@@ -5,6 +5,7 @@ import com.soft2242.one.common.cache.RedisCache;
 import com.soft2242.one.common.exception.ServerException;
 import com.soft2242.one.dao.AccountDao;
 import com.soft2242.one.entity.AccountEntity;
+import com.soft2242.one.entity.UserEntity;
 import com.soft2242.one.security.cache.TokenStoreCache;
 import com.soft2242.one.security.user.UserDetail;
 import com.soft2242.one.security.utils.TokenUtils;
@@ -126,5 +127,11 @@ public class AuthServiceImpl implements AuthService {
             throw new ServerException("修改失败");
         }
         return true;
+    }
+
+    @Override
+    public AccountEntity getUserInfo(String phone) {
+        AccountEntity byPhone = accountDao.getByPhone(phone);
+        return byPhone;
     }
 }
