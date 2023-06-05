@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.soft2242.one</groupId>
     <artifactId>property-client-api</artifactId>
-    <version>${reversion}</version>
+    <version>1.0.0</version>
     <packaging>pom</packaging>
     <description>物业客户端 API 父项目</description>
 

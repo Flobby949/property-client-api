@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.soft2242.one</groupId>
         <artifactId>api-plugin</artifactId>
-        <version>${reversion}</version>
+        <version>1.0.0</version>
     </parent>
 
     <artifactId>sms-plugin</artifactId>
@@ -18,7 +18,7 @@
             <dependency>
                 <groupId>com.soft2242.one</groupId>
                 <artifactId>api-base</artifactId>
-                <version>${reversion}</version>
+                <version>1.0.0</version>
             </dependency>
 
             <dependency>

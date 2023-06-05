@@ -20,7 +20,7 @@ public class SwaggerConfig {
     public GroupedOpenApi userApi() {
         String[] paths = {"/**"};
         String[] packagedToMatch = {"com.soft2242.one"};
-        return GroupedOpenApi.builder().group("Admin Template")
+        return GroupedOpenApi.builder().group("property-client-api")
                 .pathsToMatch(paths)
                 .packagesToScan(packagedToMatch).build();
     }
@@ -31,8 +31,8 @@ public class SwaggerConfig {
         contact.setName("Group-One");
 
         return new OpenAPI().info(new Info()
-                .title("业主客户端接口文档")
-                .description("业主客户端接口文档")
+                .title("物业客户端接口文档")
+                .description("物业客户端接口文档")
                 .contact(contact)
                 .version("1.0.0")
                 .termsOfService("https://www.soft2242.com"));

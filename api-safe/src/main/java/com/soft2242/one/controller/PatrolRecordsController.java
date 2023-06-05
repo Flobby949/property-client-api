@@ -1,10 +1,7 @@
 package com.soft2242.one.controller;
 
 
-import com.soft2242.one.common.utils.PageResult;
 import com.soft2242.one.common.utils.Result;
-import com.soft2242.one.convert.PatrolRecordsConvert;
-import com.soft2242.one.entity.PatrolRecordsEntity;
 import com.soft2242.one.query.PatrolRecordsQuery;
 import com.soft2242.one.service.PatrolRecordsService;
 import com.soft2242.one.service.service.StorageService;
@@ -15,7 +12,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springdoc.core.annotations.ParameterObject;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 

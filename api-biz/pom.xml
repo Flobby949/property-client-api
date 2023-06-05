@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.soft2242.one</groupId>
         <artifactId>property-client-api</artifactId>
-        <version>${reversion}</version>
+        <version>1.0.0</version>
     </parent>
 
     <artifactId>api-biz</artifactId>
@@ -17,7 +17,7 @@
         <dependency>
             <groupId>com.soft2242.one</groupId>
             <artifactId>api-base</artifactId>
-            <version>${reversion}</version>
+            <version>1.0.0</version>
         </dependency>
     </dependencies>
 
