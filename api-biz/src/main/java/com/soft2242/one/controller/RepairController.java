@@ -24,7 +24,7 @@ import java.util.List;
 * @since 1.0.0 2023-06-05
 */
 @RestController
-@RequestMapping("soft2242/repair")
+@RequestMapping("repair/repair")
 @Tag(name="报修表")
 @AllArgsConstructor
 public class RepairController {
