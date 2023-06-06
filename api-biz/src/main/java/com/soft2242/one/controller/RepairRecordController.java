@@ -6,6 +6,7 @@ import com.soft2242.one.convert.RepairRecordConvert;
 import com.soft2242.one.entity.RepairRecordEntity;
 import com.soft2242.one.query.RepairRecordQuery;
 import com.soft2242.one.service.RepairRecordService;
+import com.soft2242.one.vo.OrderDetailVO;
 import com.soft2242.one.vo.RepairRecordVO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -40,10 +41,8 @@ public class RepairRecordController {
 
     @GetMapping("{id}")
     @Operation(summary = "信息")
-    public Result<RepairRecordVO> get(@PathVariable("id") Long id){
-        RepairRecordEntity entity = RepairRecordService.getById(id);
-
-        return Result.ok(RepairRecordConvert.INSTANCE.convert(entity));
+    public Result<OrderDetailVO> get(@PathVariable("id") Long id){
+        return Result.ok(RepairRecordService.getInfo(id));
     }
 
     @PostMapping

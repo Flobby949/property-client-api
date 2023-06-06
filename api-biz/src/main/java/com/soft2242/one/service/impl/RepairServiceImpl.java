@@ -11,6 +11,7 @@ import com.soft2242.one.entity.RepairRecordEntity;
 import com.soft2242.one.mybatis.service.impl.BaseServiceImpl;
 import com.soft2242.one.query.RepairQuery;
 import com.soft2242.one.query.RepairRecordQuery;
+import com.soft2242.one.service.RepairRecordService;
 import com.soft2242.one.service.RepairService;
 import com.soft2242.one.vo.OrderDetailVO;
 import com.soft2242.one.vo.RepairVO;
@@ -32,7 +33,7 @@ import java.util.Map;
 @Service
 @AllArgsConstructor
 public class RepairServiceImpl extends BaseServiceImpl<RepairDao, RepairEntity> implements RepairService {
-
+    private  RepairRecordService repairRecordService;
     @Override
     public PageResult<RepairVO> page(RepairQuery query) {
         Map<String,Object> parmas=getParams(query);
@@ -78,6 +79,7 @@ public class RepairServiceImpl extends BaseServiceImpl<RepairDao, RepairEntity> 
     @Override
     public OrderDetailVO getInfoByOrderId(Long orderId) {
         OrderDetailVO detail = baseMapper.getInfoById(orderId);
+
         //先查询报修人信息
         if (detail.getUserType()==0) {//身份时业主
             //查询业主信息
@@ -93,7 +95,8 @@ public class RepairServiceImpl extends BaseServiceImpl<RepairDao, RepairEntity> 
         }
 
         /*查询处理人信息*/
-        RepairRecordEntity record = baseMapper.getEmployeeIds(detail.getId());
+        RepairRecordEntity record =baseMapper.getEmployeeIds(detail.getId());
+        System.out.println(record);
         if(record!=null){
             String names="";
             String[] strs = record.getEmployeeIds().split(",");

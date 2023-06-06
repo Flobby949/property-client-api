@@ -6,6 +6,7 @@ import com.soft2242.one.common.utils.PageResult;
 import com.soft2242.one.entity.RepairRecordEntity;
 import com.soft2242.one.mybatis.service.BaseService;
 import com.soft2242.one.query.RepairRecordQuery;
+import com.soft2242.one.vo.OrderDetailVO;
 import com.soft2242.one.vo.RepairRecordVO;
 
 import java.util.List;
@@ -25,4 +26,6 @@ public interface RepairRecordService extends BaseService<RepairRecordEntity> {
     void update(RepairRecordVO vo);
 
     void delete(List<Long> idList);
+
+    OrderDetailVO getInfo(Long recordId);
 }
