@@ -8,8 +8,11 @@
         <if test="employeeIds!=null">
             AND t1.employee_ids  LIKE CONCAT('%',#{employeeIds},'%')
         </if>
-        <if test="status!=null">
-            AND t1.state = #{status}
+        <if test="status ==1">
+            AND t1.state = 0
+        </if>
+        <if test="status ==2">
+            AND t1.state = 2
         </if>
     </select>
 </mapper>

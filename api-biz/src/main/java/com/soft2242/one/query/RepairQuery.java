@@ -18,7 +18,7 @@ public class RepairQuery extends Query {
     @Schema(description = "报修类别(0:公共报修，1：个人报修)")
     private Integer type;
 
-    @Schema(description = "处理状态（0：未处理，1：处理中，2：已处理，3：已评价）")
+    @Schema(description = "处理状态（ 0:全部,1：未分配，2：未处理,3：处理中，4：已处理，5：已评价）")
     private Integer state;
 
 }
