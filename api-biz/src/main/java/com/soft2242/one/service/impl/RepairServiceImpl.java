@@ -15,6 +15,7 @@ import com.soft2242.one.service.RepairRecordService;
 import com.soft2242.one.service.RepairService;
 import com.soft2242.one.vo.OrderDetailVO;
 import com.soft2242.one.vo.RepairVO;
+import com.soft2242.one.vo.SysUserVO;
 import lombok.AllArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
@@ -111,6 +112,12 @@ public class RepairServiceImpl extends BaseServiceImpl<RepairDao, RepairEntity> 
         }
         detail.setResultName(detail.getHandlerName());
         return detail;
+    }
+
+    @Override
+    public List<SysUserVO> getUser() {
+        List<SysUserVO> userList = baseMapper.getUserList();
+        return userList;
     }
 
 }

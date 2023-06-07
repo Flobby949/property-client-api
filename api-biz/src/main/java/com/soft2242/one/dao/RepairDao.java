@@ -5,6 +5,7 @@ import com.soft2242.one.entity.RepairEntity;
 import com.soft2242.one.entity.RepairRecordEntity;
 import com.soft2242.one.mybatis.dao.BaseDao;
 import com.soft2242.one.vo.OrderDetailVO;
+import com.soft2242.one.vo.SysUserVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -32,4 +33,7 @@ public interface RepairDao extends BaseDao<RepairEntity> {
 	OrderDetailVO getInfo(@Param("userId") Long userId);
 
 	RepairRecordEntity getEmployeeIds(@Param("orderId") Long orderId);
+
+	//获取分配人员
+	List<SysUserVO> getUserList();
 }

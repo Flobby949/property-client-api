@@ -2,11 +2,13 @@ package com.soft2242.one.service;
 
 
 import com.soft2242.one.common.utils.PageResult;
+import com.soft2242.one.common.utils.Result;
 import com.soft2242.one.entity.RepairEntity;
 import com.soft2242.one.mybatis.service.BaseService;
 import com.soft2242.one.query.RepairQuery;
 import com.soft2242.one.vo.OrderDetailVO;
 import com.soft2242.one.vo.RepairVO;
+import com.soft2242.one.vo.SysUserVO;
 
 import java.util.List;
 
@@ -27,4 +29,6 @@ public interface RepairService extends BaseService<RepairEntity> {
     void delete(List<Long> idList);
 
     OrderDetailVO getInfoByOrderId(Long orderId);
+
+    List<SysUserVO> getUser();
 }
