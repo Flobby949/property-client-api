@@ -82,5 +82,7 @@ public class TPatrolRecordsVO implements Serializable{
 
     @Schema(description = "状态（0：未完成，1：已完成）")
     private Integer status;
+    @Schema(description = "状态（0：正常，1：异常）")
+    private Integer resultStatus;
 
 }

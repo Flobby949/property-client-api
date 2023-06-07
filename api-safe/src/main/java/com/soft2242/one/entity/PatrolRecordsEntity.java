@@ -72,7 +72,9 @@ public class PatrolRecordsEntity extends BaseEntity {
 	* 状态（0：未完成，1：已完成）
 	*/
 	private Integer status;
-
-
+	/**
+	 * 结果状态（正常：0，异常：1）
+	 */
+	private Integer resultStatus;
 
 }

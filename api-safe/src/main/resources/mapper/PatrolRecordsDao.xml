@@ -51,7 +51,8 @@
 		                f.start_time,
 		                f.end_time,
 		                g.REAL_NAME,
-		                e.way_name as wayName
+		                e.way_name as wayName,
+		                a.result_status
 		from t_patrol_records a
 			     join t_patrol_points b
 			          on a.point_id =
@@ -86,7 +87,9 @@
 		       e.start_time,
 		       e.end_time,
 		       f.REAL_NAME,
-		       a.id
+		       a.id,
+		       a.result_status,
+		       b.way_name as wayName
 		from t_patrol_records a
 			     join t_patrol_path b
 			          on a.path_id =

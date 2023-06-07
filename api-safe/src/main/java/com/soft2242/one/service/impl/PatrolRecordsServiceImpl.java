@@ -103,6 +103,7 @@ public class PatrolRecordsServiceImpl extends BaseServiceImpl<PatrolRecordsDao, 
     @Override
     public void update(PatrolRecordsVO vo) {
         PatrolRecordsEntity entity = PatrolRecordsConvert.INSTANCE.convert(vo);
+        System.out.println("======================="+entity);
         updateById(entity);
     }
 
