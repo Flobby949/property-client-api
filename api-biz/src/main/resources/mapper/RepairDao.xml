@@ -33,7 +33,7 @@
     <select id="getPropertyInfo" resultType="com.soft2242.one.vo.OrderDetailVO">
         SELECT t1.REAL_NAME AS username,t2.PHONE AS phone FROM sys_admin_info t1
         LEFT JOIN sys_admin t2 on t2.ID=t1.ADMIN_ID
-        WHERE t1.id=#{userId}
+        WHERE t2.ID=#{userId}
     </select>
     <select id="getEmployeeIds" resultType="com.soft2242.one.entity.RepairRecordEntity">
         SELECT t1.* FROM t_repair_record t1
