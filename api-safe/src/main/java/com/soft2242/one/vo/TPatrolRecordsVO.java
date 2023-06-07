@@ -85,4 +85,7 @@ public class TPatrolRecordsVO implements Serializable{
     @Schema(description = "状态（0：正常，1：异常）")
     private Integer resultStatus;
 
+    @Schema(description = "巡检提交时间")
+    @JsonFormat(pattern = DateUtils.DATE_TIME_PATTERN)
+    private Date updateTime;
 }

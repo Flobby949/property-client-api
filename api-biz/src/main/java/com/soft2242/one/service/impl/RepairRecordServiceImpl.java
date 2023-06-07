@@ -21,10 +21,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 报修处理表
@@ -63,8 +60,14 @@ public class RepairRecordServiceImpl extends BaseServiceImpl<RepairRecordDao, Re
     @Override
     public void update(RepairRecordVO vo) {
         RepairRecordEntity entity = RepairRecordConvert.INSTANCE.convert(vo);
-
+        RepairEntity entity1 = repairDao.selectById(entity.getRepairId());
+        entity1.setResult(entity.getResult());
+        Date date=new Date();
+        entity1.setHandleTime(date);
+        entity1.setState(entity.getState());
+        int i = repairDao.updateById(entity1);
         updateById(entity);
+        System.out.println("==================="+i);
     }
 
     @Override
