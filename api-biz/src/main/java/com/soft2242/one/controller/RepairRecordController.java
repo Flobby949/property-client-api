@@ -6,6 +6,8 @@ import com.soft2242.one.convert.RepairRecordConvert;
 import com.soft2242.one.entity.RepairRecordEntity;
 import com.soft2242.one.query.RepairRecordQuery;
 import com.soft2242.one.service.RepairRecordService;
+import com.soft2242.one.service.service.StorageService;
+import com.soft2242.one.vo.FileUploadVO;
 import com.soft2242.one.vo.OrderDetailVO;
 import com.soft2242.one.vo.RepairRecordVO;
 import io.swagger.v3.oas.annotations.Operation;
@@ -16,6 +18,8 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import jakarta.validation.Valid;
+import org.springframework.web.multipart.MultipartFile;
+
 import java.util.List;
 
 /**
@@ -30,7 +34,7 @@ import java.util.List;
 @AllArgsConstructor
 public class RepairRecordController {
     private final RepairRecordService RepairRecordService;
-
+    private final StorageService storageService;
     @GetMapping("page")
     @Operation(summary = "分页")
     public Result<PageResult<RepairRecordVO>> page(@ParameterObject @Valid RepairRecordQuery query){
@@ -66,5 +70,24 @@ public class RepairRecordController {
     public Result<String> delete(@RequestBody List<Long> idList){
         RepairRecordService.delete(idList);
         return Result.ok();
+    }
+
+    @PostMapping("upload")
+    @Operation(summary = "项目图片上传")
+    public Result<FileUploadVO> upload(@RequestParam("file") MultipartFile file) throws Exception {
+        if (file.isEmpty()) {
+            return Result.error("请选择需要上传的文件");
+        }
+        // 上传路径
+        String path = storageService.getPath(file.getOriginalFilename());
+        // 上传文件
+        String url = storageService.upload(file.getBytes(), path);
+        FileUploadVO vo = new FileUploadVO();
+        vo.setUrl(url);
+        vo.setSize(file.getSize());
+        vo.setName(file.getOriginalFilename());
+        vo.setPlatform(storageService.properties.getConfig().getType().name());
+        System.out.println(vo);
+        return Result.ok(vo);
     }
 }
