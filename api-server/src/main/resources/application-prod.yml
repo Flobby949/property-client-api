@@ -28,9 +28,9 @@ storage:
     # 存储类型：local、aliyun、minio
 #    type: local
 #    domain: http://106.14.246.27:8080
-#    type: aliyun
-#    domain: https://flobby529.oss-cn-nanjing.aliyuncs.com
-    type: minio
+    type: aliyun
+    domain: https://flobby529.oss-cn-nanjing.aliyuncs.com
+#    type: minio
   local:
     path: /root/admin/appendix
   aliyun:
